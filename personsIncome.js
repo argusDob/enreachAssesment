@@ -10,15 +10,31 @@ function personsIncome() {
         let thePerson = {
           ...person
         }
-        let randomIncome = Math.random() * (1000 - 500) + 500;
-        if(typeof randomIncome !== 'undefined'){
-        var roundedIncome = Math.round(randomIncome * 10) / 10
-        thePerson.income = roundedIncome;
-        }
+        let theReversedName = getReversedNames(thePerson)
+        let theRandomIncome = getRandomIncome(thePerson)
+        thePerson.name = theReversedName
+        thePerson.income = theRandomIncome
+
         const promise = service.getPersons(thePerson);
         promisesList.push(promise);
       }
     });
+  }
+
+  function getReversedNames(thePerson) {
+    let reversedNames = ""
+    if (thePerson.name !== "undefined") {
+      reversedNames = thePerson.name.split(' ').reverse().join(' ')
+    } else {
+      reversedNames = "No name"
+    }
+    return reversedNames
+  }
+
+  function getRandomIncome(thePerson) {
+    let randomIncome = Math.random() * (1000 - 500) + 500;
+    let roundedIncome = Math.round(randomIncome * 10) / 10
+    return roundedIncome;
   }
 
   function calculateAverageIncome(response) {
@@ -42,18 +58,18 @@ function personsIncome() {
 
   function fetchMyPersons() {
     calculateIncome();
-    if(promisesList.length === 0) { 
-        console.warn("Promise list should have lentght")
-        return;
+    if (promisesList.length === 0) {
+      console.warn("Promise list should have lentght")
+      return;
     }
     Promise.all(promisesList).then(function(response) {
-      let dde = new BuiltList(response);
-      dde.builtHTMLlist();
-      calculateAverageIncome(response)
-    })
-    .catch(function(error){
+        let dde = new BuiltList(response);
+        dde.builtHTMLlist();
+        calculateAverageIncome(response)
+      })
+      .catch(function(error) {
         console.error(error)
-    })
+      })
   }
   return {
     fetchPersons: fetchMyPersons
