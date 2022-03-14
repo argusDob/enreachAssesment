@@ -1,0 +1,49 @@
+<style>
+  body {
+    background: #f0f0f0;
+  }
+
+  dt {
+    margin: 0 5em;
+  }
+
+  dl {
+    margin: 0.5em 0;
+    padding: 0.5em 1em;
+    background: white;
+    border-radius: 1em;
+    display: grid;
+    grid-gap: 0 1rem;
+    grid-template-columns: 1fr 1fr 1fr;
+    text-align: center;
+    grid-auto-flow: dense;
+  }
+
+  dd {
+    margin: 0 0 1rem;
+    padding: 0.25rem 1rem;
+    background: lightcyan;
+  }
+    
+</style>
+<html>
+
+  <head>
+    <title>Body Tag</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+
+  <body>
+    <div id="content">
+    </div>
+  </body>
+  <script type="text/javascript" src='constructHTML.js'></script>
+  <script type="text/javascript" src='persons.js'></script>
+  <script type="text/javascript" src='services.js'></script>
+  <script type="text/javascript" src='personsIncome.js'></script>
+</html>
+
+
+<template id="payroll-entry">
+  <dl></dl>
+</template>
